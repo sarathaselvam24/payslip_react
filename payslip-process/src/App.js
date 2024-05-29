@@ -20,17 +20,21 @@ import Employee from "./Employee";
 import Login from "./Login";
 import Admin from "./Admin";
 import EmployeeLoanRequest from "./EmployeeLoanRequest";
-import EmployeeProfile from "./EmployeeProfile";
+import EmployeeProfileForm from "./EmployeeProfileForm";
+import EmployeeAccountForm from "./EmployeeAccountForm";
+import UserNotFound from "./UserNotFound";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/employee/:id" element={<Employee />} />
+        <Route path="/userNotFound" element={<UserNotFound />} />
+        <Route path="/employee" element={<Employee />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/employeeLoanRequest" element={<EmployeeLoanRequest />} />
-        <Route path="/employeeProfile" element={<EmployeeProfile />} />
+        <Route path="/employee/profile" element={<EmployeeProfileForm />} />
+        <Route path="/employee/account" element={<EmployeeAccountForm />} />
       </Routes>
     </Router>
   );

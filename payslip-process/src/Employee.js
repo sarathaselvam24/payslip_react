@@ -1,19 +1,32 @@
 import React from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 
 const Employee = () => {
-  const { id } = useParams();
+  // const { id } = useParams();
   const location = useLocation();
   const userData = location.state.userData;
+  const navigate = useNavigate();
+
+  const handleProfileClick = () => {
+    navigate(`/employee/profile`, { state: { userData } });
+  };
+
+  const handleAccountClick = () => {
+    navigate(`/employee/account`, { state: { userData } });
+  };
 
   return (
     <div>
       <h1>Employee Page</h1>
-      <p>Employee ID: {id}</p>
+      {/* <p>Employee ID: {id}</p> */}
       <p>Name: {userData.empid}</p>
-      <p>role: {userData.role}</p>
+      <p>Role: {userData.role}</p>
       <p>Email: {userData.emailid}</p>
-      <p>password: {userData.password}</p>
+      <p>Password: {userData.password}</p>
+      <div>
+        <button onClick={handleProfileClick}>Profile</button>
+        <button onClick={handleAccountClick}>Account</button>
+      </div>
     </div>
   );
 };

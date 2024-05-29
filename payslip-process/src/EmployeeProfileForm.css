@@ -1,0 +1,115 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  -ms-grid-column-align: start;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.col-lg-12 {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+form {
+  width: 100%;
+  border: 1px solid hsl(0, 0%, 80%);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+h2 {
+  color: #069;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 10px; /* Decreased margin-bottom to minimize gap between fields */
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-row .form-group {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.form-row .form-group:last-child {
+  margin-right: 0;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: calc(
+    100% - 16px
+  ); /* Calculate width to accommodate padding and border */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
+
+.plain-textarea {
+  height: 80px;
+}
+
+button {
+  padding: 8px 16px;
+  background-color: #069;
+  color: #fff;
+  border: 1px solid #069;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px; /* Adding margin-right for spacing between buttons */
+}
+
+button:hover {
+  background-color: #005ba1;
+}
+
+button[type="button"] {
+  background-color: #ccc;
+  color: #000;
+  border: 1px solid #ccc;
+}
+
+.button-row {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 5px; /* Minimized gap between form fields and buttons */
+}
+
+.button-row button {
+  margin-right: 5px; /* Margin-right for spacing between buttons */
+}
+
+.button-row button:last-child {
+  margin-right: 0; /* Removing margin-right for the last button */
+}
+
+.form-group input[readonly] {
+  background-color: #f0f0f0; /* Gray color for read-only fields */
+}
+
+.form-group textarea[readonly] {
+  background-color: #f0f0f0; /* Gray color for read-only fields */
+}
