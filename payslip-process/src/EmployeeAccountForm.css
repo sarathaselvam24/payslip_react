@@ -1,0 +1,93 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.col-lg-12 {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+form {
+  padding: 10px;
+  border-radius: 8px;
+}
+
+h2 {
+  color: #069;
+  text-align: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  width: 120px; /* Set a fixed width for labels */
+}
+
+.form-group input,
+.form-group textarea {
+  width: calc(
+    100% - 130px
+  ); /* Calculate width to accommodate fixed label width */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
+
+.plain-input {
+  width: 100%;
+}
+
+button {
+  padding: 8px 16px;
+  background-color: #069;
+  color: #fff;
+  border: 1px solid #069;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+}
+
+button:hover {
+  background-color: #005ba1;
+}
+
+button[type="button"] {
+  background-color: #ccc;
+  color: #000;
+  border: 1px solid #ccc;
+}
+
+.button-row {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 10px; /* Minimized gap between form fields and buttons */
+  margin-left: -5px; /* Negative margin to bring buttons closer together */
+}
+
+.button-row button {
+  margin-right: 5px; /* Margin between buttons */
+}
+
+.button-row button:last-child {
+  margin-right: 0; /* Removing margin-right for the last button */
+}
+
+.form-group input[readonly] {
+  background-color: #f0f0f0; /* Gray color for read-only fields */
+}

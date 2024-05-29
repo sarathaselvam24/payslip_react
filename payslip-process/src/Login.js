@@ -52,10 +52,11 @@ const Login = () => {
           console.log("Email:", userData.role);
           console.log("Picture:", userData.emailid);
           // navigate(`/employee/${userData.empid}`, { state: { userData } });
-          navigate(`/employeeProfile`, { state: { userData } });
+          navigate(`/employee`, { state: { userData } });
         }
       } else {
         console.log("User not found or request failed.");
+        navigate(`/userNotFound`);
       }
     });
   };
@@ -112,22 +113,6 @@ const Login = () => {
           scope="profile email"
           className="google-login-button"
         />
-        {userInfo && (
-          <div className="user-info">
-            <h3>User Info</h3>
-            <p>Name: {userInfo.name}</p>
-            <p>Email: {userInfo.email}</p>
-            {userInfo.picture && (
-              <div>
-                <img
-                  src={userInfo.picture}
-                  alt="Profile"
-                  className="profile-pic"
-                />
-              </div>
-            )}
-          </div>
-        )}
       </div>
     </div>
   );
