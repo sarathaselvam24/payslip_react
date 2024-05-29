@@ -1,0 +1,94 @@
+/* src/LoanApplicationForm.css */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+}
+
+.form-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 600px;
+  padding-top: 30px;
+}
+
+.form-container h2 {
+  margin-bottom: 20px;
+  margin-top: 10px;
+  font-size: 28px;
+  text-align: center;
+  overflow: visible;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 6px;
+  margin-bottom: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.form-group input[type="date"] {
+  padding: 5px;
+}
+
+.form-group button {
+  width: 100%;
+  padding: 8px;
+  background-color: #28a745;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-group button:hover {
+  background-color: #218838;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.error-message {
+  color: red;
+}
+
+.notification-message {
+  color: white;
+  background-color: #28a745;
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 4px;
+  display: none;
+}
+
+.notification-message.active {
+  display: block;
+}

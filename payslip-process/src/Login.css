@@ -1,0 +1,73 @@
+/* Login.css */
+
+.login-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-header {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.login-form {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 6px; /* Increased padding */
+  border: 1px solid #ccc;
+  border-radius: 4px; /* Increased border radius */
+  font-size: 16px; /* Increased font size */
+}
+
+.login-button,
+.google-login-button {
+  width: 100%;
+  padding: 6px; /* Increased padding */
+  font-size: 16px; /* Increased font size */
+  border: none;
+  border-radius: 4px; /* Increased border radius */
+  cursor: pointer;
+  text-align: center;
+}
+
+.login-button {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.google-login-button {
+  background-color: #db4437;
+  color: #fff;
+}
+
+.or-divider {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.user-info {
+  margin-top: 20px;
+}
+
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
