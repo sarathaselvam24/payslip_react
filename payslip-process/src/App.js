@@ -22,6 +22,7 @@ import Admin from "./Admin";
 import EmployeeLoanRequest from "./EmployeeLoanRequest";
 import EmployeeProfileForm from "./EmployeeProfileForm";
 import EmployeeAccountForm from "./EmployeeAccountForm";
+import EmployeePayslipForm from "./EmployeePayslipForm";
 import UserNotFound from "./UserNotFound";
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route path="/employeeLoanRequest" element={<EmployeeLoanRequest />} />
         <Route path="/employee/profile" element={<EmployeeProfileForm />} />
         <Route path="/employee/account" element={<EmployeeAccountForm />} />
+        <Route path="/employee/payslip" element={<EmployeePayslipForm />} />
       </Routes>
     </Router>
   );

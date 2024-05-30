@@ -15,6 +15,10 @@ const Employee = () => {
     navigate(`/employee/account`, { state: { userData } });
   };
 
+  const handlePayslipClick = () => {
+    navigate(`/employee/payslip`, { state: { userData } });
+  };
+
   return (
     <div>
       <h1>Employee Page</h1>
@@ -26,6 +30,7 @@ const Employee = () => {
       <div>
         <button onClick={handleProfileClick}>Profile</button>
         <button onClick={handleAccountClick}>Account</button>
+        <button onClick={handlePayslipClick}>Payslip</button>
       </div>
     </div>
   );
