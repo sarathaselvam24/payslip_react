@@ -19,6 +19,10 @@ const Employee = () => {
     navigate(`/employee/payslip`, { state: { userData } });
   };
 
+  const handleLoanClick = () => {
+    navigate(`/employee/loan`, { state: { userData } });
+  };
+
   return (
     <div>
       <h1>Employee Page</h1>
@@ -31,6 +35,7 @@ const Employee = () => {
         <button onClick={handleProfileClick}>Profile</button>
         <button onClick={handleAccountClick}>Account</button>
         <button onClick={handlePayslipClick}>Payslip</button>
+        <button onClick={handleLoanClick}>Loan</button>
       </div>
     </div>
   );
