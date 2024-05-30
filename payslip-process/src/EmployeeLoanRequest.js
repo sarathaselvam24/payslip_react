@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import "./EmployeeLoanRequest.css"; // Make sure to create and include this CSS file
+import "./EmployeeLoanRequest.css";
+import axios from "axios";
 
 const months = [
   "January",
@@ -36,6 +38,8 @@ const populateMonths = () => {
 };
 
 const EmployeeLoanRequest = () => {
+  const location = useLocation();
+  const userData = location.state.userData;
   const [loanAmount, setLoanAmount] = useState("");
   const [emiStartsFrom, setEmiStartsFrom] = useState("");
   const [note, setNote] = useState("");
@@ -44,10 +48,15 @@ const EmployeeLoanRequest = () => {
   const [emi, setEmi] = useState("");
   const [repaymentTermsError, setRepaymentTermsError] = useState("");
   const [notification, setNotification] = useState("");
-
+  const navigate = useNavigate();
   useEffect(() => {
     populateMonths();
   }, []);
+
+  useEffect(() => {
+    updateEMIDropdown();
+    toggleBackgroundColor();
+  }, [expectedMonth]);
 
   const updateEMIDropdown = () => {
     const emiStartsFromSelect = document.getElementById("emistartsfrom");
@@ -57,6 +66,7 @@ const EmployeeLoanRequest = () => {
     const placeholderOption = document.createElement("option");
     placeholderOption.text = "Select Month";
     placeholderOption.disabled = true;
+    placeholderOption.selected = true;
     emiStartsFromSelect.add(placeholderOption);
 
     if (selectedMonth !== "" && !isNaN(selectedYear)) {
@@ -114,22 +124,72 @@ const EmployeeLoanRequest = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setNotification("Loan application submitted successfully!");
+
+    // Gather all the form data
+    const formData = {
+      empid: userData.empid,
+      loanAmount,
+      expectedMonth,
+      emiStartsFrom,
+      repaymentTerms,
+      emi,
+      note,
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/loanrequest",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status === 200 && response.data === false) {
+        console.log("if " + response.data);
+        setNotification("Already Loan Exists.");
+      }
+      if (response.status === 202 && response.data === true) {
+        console.log("else " + response.data);
+        setNotification("Loan application submitted successfully!");
+      }
+      if (response.status === 400 && response.data === false) {
+        console.log("else " + response.data);
+        setNotification("Bad Request");
+      }
+
+      console.log("Success: ", formData, "User data: ", userData.empid);
+    } catch (error) {
+      console.error(
+        "Error: ",
+        error.response ? error.response.data : error.message,
+        "Form data: ",
+        formData,
+        "User data: ",
+        userData.empid
+      );
+      setNotification("Failed to submit loan application.");
+    }
+
     setTimeout(() => setNotification(""), 3000);
   };
-
+  const handleLoanHistoryClick = () => {
+    navigate(`/employee/myLoanHistory`, { state: { userData } });
+  };
   return (
     <div className="form-container">
       <h2 className="icon">
         <i className="bi bi-cash"></i> Loan Application Form
       </h2>
-      <a className="button view" href="/myLoanHistory">
-        Loan History
-      </a>
+      <button onClick={handleLoanHistoryClick}>Loan</button>
       {notification && (
-        <div className="notification-message">{notification}</div>
+        <div className={`notification-message ${notification ? "active" : ""}`}>
+          {notification}
+        </div>
       )}
       <form onSubmit={handleSubmit}>
         <div className="row">
@@ -179,11 +239,7 @@ const EmployeeLoanRequest = () => {
                 id="expectedmonth"
                 name="expectedmonth"
                 value={expectedMonth}
-                onChange={(e) => {
-                  setExpectedMonth(e.target.value);
-                  updateEMIDropdown();
-                  toggleBackgroundColor();
-                }}
+                onChange={(e) => setExpectedMonth(e.target.value)}
                 required
               >
                 <option value="" disabled>
