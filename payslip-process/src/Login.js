@@ -46,6 +46,7 @@ const Login = () => {
           console.log("Email:", userData.role);
           console.log("Picture:", userData.emailid);
           console.log("empid :", userData.empid);
+          console.log("login userdata " + userData);
           navigate(`/admin`, { state: { userData } });
         }
         if (userData.role === "employee") {
