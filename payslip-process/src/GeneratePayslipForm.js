@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
 import axios from "axios";
 import Notification from "./Notification";
 const GeneratePayslipForm = () => {
@@ -9,13 +8,8 @@ const GeneratePayslipForm = () => {
   const [paiddays, setPaiddays] = useState("");
   const [notification, setNotification] = useState(null);
 
-  console.log("Form submitted");
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log("Form submitted");
-
     try {
       const response = await axios.post(
         "http://localhost:8080/api/generatePayslip",

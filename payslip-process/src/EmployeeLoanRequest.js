@@ -6,6 +6,7 @@ import "./EmployeeLoanRequest.css";
 import axios from "axios";
 import Notification from "./Notification";
 import "./Notification.css";
+
 const months = [
   "January",
   "February",
@@ -50,6 +51,7 @@ const EmployeeLoanRequest = () => {
   const [repaymentTermsError, setRepaymentTermsError] = useState("");
   const [notification, setNotification] = useState(null);
   const navigate = useNavigate();
+
   useEffect(() => {
     populateMonths();
   }, []);
@@ -128,7 +130,6 @@ const EmployeeLoanRequest = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Gather all the form data
     const formData = {
       empid: userData.empid,
       loanAmount,
@@ -151,19 +152,14 @@ const EmployeeLoanRequest = () => {
       );
 
       if (response.status === 200 && response.data === false) {
-        console.log("if " + response.data);
         showNotification("Oops! Already Pending Loan Request Exists", "error");
       }
       if (response.status === 202 && response.data === true) {
-        console.log("else 202 " + response.data);
         showNotification("Loan Request submitted successfully!", "success");
       }
       if (response.status === 400 && response.data === false) {
-        console.log("else " + response.data);
         showNotification("Oh No!", "error");
       }
-
-      console.log("Success: ", formData, "User data: ", userData.empid);
     } catch (error) {
       console.error(
         "Error: ",
@@ -178,6 +174,7 @@ const EmployeeLoanRequest = () => {
 
     setTimeout(() => setNotification(""), 3000);
   };
+
   const handleLoanHistoryClick = () => {
     navigate(`/employee/myLoanHistory`, { state: { userData } });
   };
@@ -190,19 +187,22 @@ const EmployeeLoanRequest = () => {
   };
 
   return (
-    <div className="form-container">
-      <h2 className="icon">
+    <div className="container mt-5">
+      <h2 className="text-center mb-4">
         <i className="bi bi-cash"></i> Loan Application Form
       </h2>
-      <button onClick={handleLoanHistoryClick}>Loan</button>
+      <button className="btn btn-primary mb-3" onClick={handleLoanHistoryClick}>
+        View Loan History
+      </button>
       <Notification message={notification?.message} type={notification?.type} />
       <form onSubmit={handleSubmit}>
         <div className="row">
           <div className="col-md-6">
-            <div className="form-group">
+            <div className="form-group mb-3">
               <label htmlFor="loanamount">Loan Amount</label>
               <input
                 type="number"
+                className="form-control"
                 id="loanamount"
                 name="loanamount"
                 value={loanAmount}
@@ -211,11 +211,12 @@ const EmployeeLoanRequest = () => {
                 required
               />
             </div>
-            <div className="form-group">
+            <div className="form-group mb-3">
               <label htmlFor="emistartsfrom">EMI Starts From</label>
               <select
                 id="emistartsfrom"
                 name="emistartsfrom"
+                className="form-select"
                 value={emiStartsFrom}
                 onChange={(e) => setEmiStartsFrom(e.target.value)}
                 required
@@ -226,10 +227,11 @@ const EmployeeLoanRequest = () => {
                 </option>
               </select>
             </div>
-            <div className="form-group">
+            <div className="form-group mb-3">
               <label htmlFor="note">Note</label>
               <input
                 type="text"
+                className="form-control"
                 id="note"
                 name="note"
                 value={note}
@@ -238,11 +240,12 @@ const EmployeeLoanRequest = () => {
             </div>
           </div>
           <div className="col-md-6">
-            <div className="form-group">
+            <div className="form-group mb-3">
               <label htmlFor="expectedmonth">Expected Month</label>
               <select
                 id="expectedmonth"
                 name="expectedmonth"
+                className="form-select"
                 value={expectedMonth}
                 onChange={(e) => setExpectedMonth(e.target.value)}
                 required
@@ -252,10 +255,11 @@ const EmployeeLoanRequest = () => {
                 </option>
               </select>
             </div>
-            <div className="form-group">
+            <div className="form-group mb-3">
               <label htmlFor="repaymentterms">Repayment Terms (1-6)</label>
               <input
                 type="number"
+                className="form-control"
                 id="repaymentterms"
                 name="repaymentterms"
                 value={repaymentTerms}
@@ -266,17 +270,26 @@ const EmployeeLoanRequest = () => {
                 required
               />
               {repaymentTermsError && (
-                <div className="error-message">{repaymentTermsError}</div>
+                <div className="text-danger">{repaymentTermsError}</div>
               )}
             </div>
-            <div className="form-group">
+            <div className="form-group mb-3">
               <label htmlFor="emi">EMI (per month)</label>
-              <input type="text" id="emi" name="emi" value={emi} readOnly />
+              <input
+                type="text"
+                className="form-control"
+                id="emi"
+                name="emi"
+                value={emi}
+                readOnly
+              />
             </div>
           </div>
         </div>
-        <div className="form-group">
-          <button type="submit">Submit</button>
+        <div className="form-group text-center">
+          <button type="submit" className="btn btn-success">
+            Submit
+          </button>
         </div>
       </form>
     </div>

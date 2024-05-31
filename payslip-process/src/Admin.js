@@ -33,18 +33,11 @@ const Admin = () => {
         <Link className="button edit" to="/editSalaryDetails">
           Edit Salary Details
         </Link>
-        <Link className="button edit" to="/admin/payslip">
-          Generate PaySlip
-        </Link>
-
         <button onClick={handlePayslipClick}>Generate PaySlip</button>
-
         <Link className="button create" to="/overtime">
           OverTime Entry
         </Link>
-
         <button onClick={handleLoanClick}>Loan</button>
-        {userData.emailid}
       </div>
       <div>
         <button onClick={logout}>

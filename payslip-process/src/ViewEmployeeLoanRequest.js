@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import "./ViewEmployeeLoanRequests.css";
@@ -11,11 +11,16 @@ const ViewEmployeeLoanRequests = () => {
   const location = useLocation();
   const userdata = location.state?.userData;
 
-  useEffect(() => {
-    fetchLoanRequests();
+  // Define the functions
+  const toggleBackgroundColor = useCallback(() => {
+    // Function logic
   }, []);
 
-  const fetchLoanRequests = async () => {
+  const updateEMIDropdown = useCallback(() => {
+    // Function logic
+  }, []);
+
+  const fetchLoanRequests = useCallback(async () => {
     try {
       const response = await axios.get(
         "http://localhost:8080/api/allEmployeeLoanRequest"
@@ -25,7 +30,14 @@ const ViewEmployeeLoanRequests = () => {
       console.error("Fetch error:", err);
       setError(err.message);
     }
-  };
+  }, []);
+
+  // useEffect with the dependency array including necessary functions
+  useEffect(() => {
+    fetchLoanRequests();
+    toggleBackgroundColor();
+    updateEMIDropdown();
+  }, [fetchLoanRequests, toggleBackgroundColor, updateEMIDropdown]);
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
