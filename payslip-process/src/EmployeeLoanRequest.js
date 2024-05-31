@@ -4,7 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./EmployeeLoanRequest.css";
 import axios from "axios";
-
+import Notification from "./Notification";
+import "./Notification.css";
 const months = [
   "January",
   "February",
@@ -47,7 +48,7 @@ const EmployeeLoanRequest = () => {
   const [repaymentTerms, setRepaymentTerms] = useState("");
   const [emi, setEmi] = useState("");
   const [repaymentTermsError, setRepaymentTermsError] = useState("");
-  const [notification, setNotification] = useState("");
+  const [notification, setNotification] = useState(null);
   const navigate = useNavigate();
   useEffect(() => {
     populateMonths();
@@ -151,15 +152,15 @@ const EmployeeLoanRequest = () => {
 
       if (response.status === 200 && response.data === false) {
         console.log("if " + response.data);
-        setNotification("Already Loan Exists.");
+        showNotification("Oops! Already Pending Loan Request Exists", "error");
       }
       if (response.status === 202 && response.data === true) {
-        console.log("else " + response.data);
-        setNotification("Loan application submitted successfully!");
+        console.log("else 202 " + response.data);
+        showNotification("Loan Request submitted successfully!", "success");
       }
       if (response.status === 400 && response.data === false) {
         console.log("else " + response.data);
-        setNotification("Bad Request");
+        showNotification("Oh No!", "error");
       }
 
       console.log("Success: ", formData, "User data: ", userData.empid);
@@ -180,17 +181,21 @@ const EmployeeLoanRequest = () => {
   const handleLoanHistoryClick = () => {
     navigate(`/employee/myLoanHistory`, { state: { userData } });
   };
+
+  const showNotification = (message, type) => {
+    setNotification({ message, type });
+    setTimeout(() => {
+      setNotification(null);
+    }, 3000);
+  };
+
   return (
     <div className="form-container">
       <h2 className="icon">
         <i className="bi bi-cash"></i> Loan Application Form
       </h2>
       <button onClick={handleLoanHistoryClick}>Loan</button>
-      {notification && (
-        <div className={`notification-message ${notification ? "active" : ""}`}>
-          {notification}
-        </div>
-      )}
+      <Notification message={notification?.message} type={notification?.type} />
       <form onSubmit={handleSubmit}>
         <div className="row">
           <div className="col-md-6">
