@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import "./Admin.css";
-import { Button } from "bootstrap";
 
 const Admin = () => {
   const location = useLocation();
@@ -16,6 +15,12 @@ const Admin = () => {
 
   const handleLoanClick = async () => {
     navigate(`/AdminLoanRequest`, { state: { userData } });
+  };
+  const handlePayslipClick = async () => {
+    navigate(`/admin/payslip`, { state: { userData } });
+  };
+  const handleOverTimeClick = async () => {
+    navigate(`/admin/overtime`, { state: { userData } });
   };
 
   return (
@@ -31,15 +36,9 @@ const Admin = () => {
         <Link className="button edit" to="/editSalaryDetails">
           Edit Salary Details
         </Link>
-        <Link className="button edit" to="/paySlip">
-          Generate PaySlip
-        </Link>
-        <Link className="button create" to="/overtime">
-          OverTime Entry
-        </Link>
-
+        <button onClick={handlePayslipClick}>Generate PaySlip</button>
+        <button onClick={handleOverTimeClick}>OverTime</button>
         <button onClick={handleLoanClick}>Loan</button>
-        {userData.emailid}
       </div>
       <div>
         <button onClick={logout}>
