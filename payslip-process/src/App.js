@@ -27,6 +27,7 @@ import EmployeePayslipForm from "./EmployeePayslipForm";
 import EmployeeLoanHistory from "./EmployeeLoanHistory";
 import ViewEmployeeLoanRequests from "./ViewEmployeeLoanRequest";
 import GeneratePayslipForm from "./GeneratePayslipForm";
+import OverTimeForm from "./OverTimeForm";
 import UserNotFound from "./UserNotFound";
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
         <Route path="/employee" element={<Employee />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/payslip" element={<GeneratePayslipForm />} />
+        <Route path="/admin/overtime" element={<OverTimeForm />} />
         <Route path="/createEmployeeForm" element={<CreateEmployeeForm />} />
         <Route path="/employee/Loan" element={<EmployeeLoanRequest />} />
         <Route path="/employee/profile" element={<EmployeeProfileForm />} />

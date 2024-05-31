@@ -19,6 +19,9 @@ const Admin = () => {
   const handlePayslipClick = async () => {
     navigate(`/admin/payslip`, { state: { userData } });
   };
+  const handleOverTimeClick = async () => {
+    navigate(`/admin/overtime`, { state: { userData } });
+  };
 
   return (
     <div className="container">
@@ -34,9 +37,7 @@ const Admin = () => {
           Edit Salary Details
         </Link>
         <button onClick={handlePayslipClick}>Generate PaySlip</button>
-        <Link className="button create" to="/overtime">
-          OverTime Entry
-        </Link>
+        <button onClick={handleOverTimeClick}>OverTime</button>
         <button onClick={handleLoanClick}>Loan</button>
       </div>
       <div>
