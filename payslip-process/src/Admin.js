@@ -2,11 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import "./Admin.css";
+import { Button } from "bootstrap";
 
 const Admin = () => {
+  const location = useLocation();
+  const userData = location.state.userData;
+  const navigate = useNavigate();
   const logout = () => {
     window.location.href = "/logout";
+  };
+
+  const handleLoanClick = async () => {
+    navigate(`/AdminLoanRequest`, { state: { userData } });
   };
 
   return (
@@ -28,9 +37,9 @@ const Admin = () => {
         <Link className="button create" to="/overtime">
           OverTime Entry
         </Link>
-        <Link className="button view" to="/AdminLoanRequest">
-          Loan
-        </Link>
+
+        <button onClick={handleLoanClick}>Loan</button>
+        {userData.emailid}
       </div>
       <div>
         <button onClick={logout}>
