@@ -19,6 +19,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Employee from "./Employee";
 import Login from "./Login";
 import Admin from "./Admin";
+import CreateEmployeeForm from "./CreateEmployeeForm";
 import EmployeeLoanRequest from "./EmployeeLoanRequest";
 import EmployeeProfileForm from "./EmployeeProfileForm";
 import EmployeeAccountForm from "./EmployeeAccountForm";
@@ -34,6 +35,7 @@ function App() {
         <Route path="/userNotFound" element={<UserNotFound />} />
         <Route path="/employee" element={<Employee />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/createEmployeeForm" element={<CreateEmployeeForm />} />
         <Route path="/employee/Loan" element={<EmployeeLoanRequest />} />
         <Route path="/employee/profile" element={<EmployeeProfileForm />} />
         <Route path="/employee/account" element={<EmployeeAccountForm />} />
