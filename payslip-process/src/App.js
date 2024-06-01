@@ -29,6 +29,7 @@ import ViewEmployeeLoanRequests from "./ViewEmployeeLoanRequest";
 import GeneratePayslipForm from "./GeneratePayslipForm";
 import OverTimeForm from "./OverTimeForm";
 import UserNotFound from "./UserNotFound";
+import ViewEmployeeData from "./ViewEmployeeData";
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
           path="/AdminLoanRequest"
           element={<ViewEmployeeLoanRequests />}
         />
+        <Route path="/viewEmployees" element={<ViewEmployeeData/>} />
       </Routes>
     </Router>
   );
